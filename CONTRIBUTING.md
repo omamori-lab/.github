@@ -14,14 +14,16 @@ own `CONTRIBUTING.md` adds its setup and its gates.
 - In a repository with `scripts/check.sh`, the script passes before every
   commit.
 - A change of behaviour starts with its tests. One commit adds them, marked
-  `pytest.mark.xfail(strict=True)` and seen failing on their assertions; the
-  commit with the code removes the marks.
+  `pytest.mark.xfail(strict=True)` so the suite still passes, and seen failing
+  on their assertions under `pytest --runxfail`; the commit with the code
+  removes the marks.
 
 ## Pull requests
 
 - A pull request names its issue with `Closes #N` in its description.
-- It merges by rebase only, so every commit reaches `main` as written and the
-  history stays linear. Its branch is deleted on merge. The repositories'
-  settings allow no other merge.
+- It merges by rebase only, so each of its commits lands on `main` in order,
+  the failing tests before their code included, and the history stays linear.
+  Its branch is deleted on merge. The repositories' settings allow no other
+  merge.
 - CodeRabbit reviews a pull request as an advisor. Each finding is reproduced
   before anyone acts on it.
